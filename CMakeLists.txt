@@ -9,11 +9,11 @@ message(STATUS "Project source directory: ${CMAKE_SOURCE_DIR}")
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 
-# Добавляем директорию с заголовками
 include_directories(include/)
 
 add_executable(Trigonometric 
     main.cpp 
     src/ans_handler.cpp 
     src/my_math.cpp
+
 )
