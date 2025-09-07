@@ -1,17 +1,19 @@
 cmake_minimum_required(VERSION 3.20)
+project(ascii-tetris LANGUAGES C)
 
-set(CMAKE_CXX_COMPILER g++)
+set(CMAKE_C_STANDARD 99)
+set(CMAKE_C_STANDARD_REQUIRED ON)
 
-project(main LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+find_package(Curses REQUIRED)
 
-set(MAIN_SOURCES main.cpp)
-set(LIB_SOURCES lib.cpp)
+set(SOURCES
+    main.c
+    tetris.c
+)
 
-add_library(my_lib STATIC ${LIB_SOURCES})
-add_executable(main ${MAIN_SOURCES})
+add_executable(tetris ${SOURCES})
 
-target_link_libraries(main PRIVATE my_lib)
-target_include_directories(my_lib PUBLIC include)
+target_include_directories(tetris PRIVATE .)
+target_compile_definitions(tetris PRIVATE _GNU_SOURCE)
+target_link_libraries(tetris PRIVATE ${CURSES_LIBRARIES})
